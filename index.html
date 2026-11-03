@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Héctor Herrera</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3efe4; --fg:#2e2f1f; --muted:#6b6b48; --accent:#9c6b3a;
+  --line:#ded7c0;
+  --display:'Cormorant Garamond', Georgia, serif;
+  --sans:'Jost','Helvetica Neue',Arial,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1b1c14; --fg:#ece8d9; --muted:#a6a37e; --accent:#d59f63; --line:#3a3b2a;
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+body{
+  margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+  background:var(--bg); color:var(--fg); font-family:var(--sans); text-align:center;
+  padding:24px;
+}
+h1{font-family:var(--display); font-weight:500; font-size:clamp(32px,7vw,56px); margin:0 0 10px}
+p{color:var(--muted); font-size:15px; letter-spacing:.04em; text-transform:uppercase; margin:0}
+.line{width:60px; height:1px; background:var(--line); margin:22px auto}
+</style>
+</head>
+<body>
+  <div>
+    <h1>Héctor Herrera</h1>
+    <div class="line"></div>
+    <p>Página en construcción</p>
+  </div>
+</body>
+</html>
