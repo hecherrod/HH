@@ -1,3 +1,32 @@
+# Subasta sin depósito · primeras rondas
+
+La participación requiere nombre, correo y WhatsApp, sin pago inicial. Al cierre de cada lote se selecciona la mayor puja válida de cada participante. Cada persona se ofrece una sola vez por obra.
+
+- El organizador prepara un enlace exclusivo de Mercado Pago o instrucciones de transferencia desde `/gestion`.
+- Después de enviar el aviso por correo o WhatsApp, confirma su envío. Ahí empieza un plazo de exactamente 24 horas. Repetir la acción no reinicia el plazo.
+- El abono se comprueba en Mercado Pago o en el banco y se registra con referencia desde el panel. El sitio impide confirmar ofertas vencidas o duplicadas.
+- Al vencer, el motor cierra la solicitud y selecciona al siguiente participante por el importe de su propia puja más alta. La siguiente oferta queda pendiente del envío de instrucciones y tiene su propio plazo completo.
+- Antes de activar otra oferta, el organizador debe desactivar el enlace anterior en Mercado Pago y registrarlo en el panel. Las transferencias tardías se revisan manualmente.
+- Si se agotan los postores, el lote queda sin adjudicar.
+
+Las conexiones de cobro y mensajería todavía requieren configuración del negocio. El panel prepara correos y mensajes de WhatsApp para envío manual. Los enlaces de Mercado Pago no se invalidan automáticamente en el proveedor. No se guardan números de tarjeta en la aplicación.
+
+## Configuración
+
+Configura `AUCTION_ADMIN_EMAIL` como secreto del servidor para habilitar el panel del organizador. Para transferencias se necesitan `AUCTION_BANK_NAME`, `AUCTION_BANK_CLABE` y `AUCTION_BANK_BENEFICIARY`. No publiques datos ni claves de cuentas en el repositorio.
+
+`AUCTION_PRIVATE_UPDATER=enabled` habilita `/api/auction/advance` únicamente en un Site privado del propietario. Su tarea en la nube debe verificar que el acceso sigue restringido al propietario y obtener la autorización de servicio de Sites en cada ejecución. Desactiva esta opción antes de ampliar el acceso del Site y sustituye la protección por una credencial de servicio limitada. Las visitas al catálogo, a Mi cuenta y al panel también concilian los vencimientos. El plazo se valida siempre en servidor, aunque la tarea aún no haya ejecutado la siguiente revisión.
+
+## Verificación
+
+Ejecuta `npm run test:auction` con Node 22.13 o posterior. Las pruebas usan la lógica real y SQLite para verificar el cierre, las 24 horas, las pujas repetidas de una misma persona, los pagos tardíos, la adjudicación única y el agotamiento de postores. Después ejecuta `npm run build`.
+
+## Base de datos local
+
+Una vez compilado, aplica las migraciones pendientes en orden con Wrangler, incluyendo `drizzle/0001_youthful_nova.sql`. No vuelvas a aplicar una migración ya ejecutada. Las migraciones publicadas son inmutables.
+
+---
+
 # vinext-starter
 
 A clean full-stack starter running on [vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and Drizzle support.
